@@ -28,11 +28,11 @@ import org.kore.jca.file.FileConnection;
  */
 public class DefaultFileConnection implements FileConnection {
 
-    private final String rootDirectory;
-    private final ConcurrentHashMap<String, byte[]> txCache;
-    private final Set<String> deletedFiles;
-    private final Closeable closeable;
-    private final PrintWriter out;
+    private String rootDirectory;
+    private ConcurrentHashMap<String, byte[]> txCache;
+    private Set<String> deletedFiles;
+    private Closeable closeable;
+    private PrintWriter out;
 
     public DefaultFileConnection(PrintWriter out, String rootDirectory, Closeable closeable) {
         this.out = out;

@@ -12,7 +12,6 @@ import java.util.Set;
 import javax.resource.ResourceException;
 import javax.resource.spi.*;
 import javax.security.auth.Subject;
-import javax.validation.constraints.Min;
 import org.kore.jca.file.FileConnection;
 import org.kore.jca.file.FileSource;
 
@@ -34,8 +33,7 @@ public class GenericManagedConnectionFactory implements ManagedConnectionFactory
         out.println("#GenericManagedConnectionFactory.constructor");
     }
 
-    @Min(1)
-    @ConfigProperty(defaultValue = "./store/", supportsDynamicUpdates = true, description = "The root folder of the file store")
+    @ConfigProperty(defaultValue = "/tmp/", supportsDynamicUpdates = true, description = "The root folder of the file store")
     public void setRootDirectory(String rootDirectory) {
         out.println("#FileBucket.setRootDirectory: " + rootDirectory);
         this.rootDirectory = rootDirectory;
