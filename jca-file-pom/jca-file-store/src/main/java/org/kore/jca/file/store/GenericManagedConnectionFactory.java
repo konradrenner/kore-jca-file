@@ -13,10 +13,17 @@ import javax.resource.ResourceException;
 import javax.resource.spi.*;
 import javax.security.auth.Subject;
 import javax.validation.constraints.Min;
+import org.kore.jca.file.FileConnection;
+import org.kore.jca.file.FileSource;
+
 /**
  *
  * @author Konrad Renner
  */
+@ConnectionDefinition(connectionFactory = FileSource.class,
+        connectionFactoryImpl = FileStore.class,
+        connection = FileConnection.class,
+        connectionImpl = DefaultFileConnection.class)
 public class GenericManagedConnectionFactory implements ManagedConnectionFactory, Serializable {
 
     private PrintWriter out;
