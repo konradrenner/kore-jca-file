@@ -27,7 +27,7 @@ public class FileStore implements FileSource {
     private PrintWriter out;
 
     public FileStore(PrintWriter out, ManagedConnectionFactory mcf, ConnectionManager cm) {
-        out.println("#FileBucketStore");
+        out.println("#FileStore");
         this.mcf = mcf;
         this.cm = cm;
         this.out = out;
@@ -35,7 +35,7 @@ public class FileStore implements FileSource {
 
     @Override
     public FileConnection getConnection() {
-        out.println("#FileBucketStore.getConnection " + this.cm + " MCF: " + this.mcf);
+        out.println("#FileStore.getConnection " + this.cm + " MCF: " + this.mcf);
         try {
             return (FileConnection) cm.allocateConnection(mcf, getConnectionRequestInfo());
         } catch (ResourceException ex) {

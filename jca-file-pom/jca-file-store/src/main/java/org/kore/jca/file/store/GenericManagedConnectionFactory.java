@@ -35,7 +35,7 @@ public class GenericManagedConnectionFactory implements ManagedConnectionFactory
 
     @ConfigProperty(defaultValue = "/tmp/", supportsDynamicUpdates = true, description = "The root folder of the file store")
     public void setRootDirectory(String rootDirectory) {
-        out.println("#FileBucket.setRootDirectory: " + rootDirectory);
+        out.println("#FileSource.setRootDirectory: " + rootDirectory);
         this.rootDirectory = rootDirectory;
     }
 

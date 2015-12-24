@@ -37,7 +37,7 @@ public class DefaultFileConnection implements FileConnection {
     public DefaultFileConnection(PrintWriter out, String rootDirectory, Closeable closeable) {
         this.out = out;
         this.rootDirectory = rootDirectory;
-        out.println("#FileBucket " + toString());
+        out.println("#DefaultFileConnection " + toString());
         this.closeable = closeable;
         this.txCache = new ConcurrentHashMap<>();
         this.deletedFiles = new ConcurrentSkipListSet<>();
@@ -54,7 +54,7 @@ public class DefaultFileConnection implements FileConnection {
 
     @Override
     public void write(String fileName, byte[] content) {
-        out.println("#FileBucket.write " + fileName + " " + content);
+        out.println("#DefaultFileConnection.write " + fileName + " " + content);
         final byte[] existingContent = this.txCache.get(fileName);
         if (existingContent == null) {
             this.txCache.put(fileName, content);
@@ -71,12 +71,12 @@ public class DefaultFileConnection implements FileConnection {
     }
 
     public void begin() throws ResourceException {
-        out.println("#FileBucket.begin " + toString());
+        out.println("#DefaultFileConnection.begin " + toString());
         this.createIfNotExists(this.rootDirectory);
     }
 
     public void commit() throws ResourceException {
-        out.println("#FileBucket.commit " + toString());
+        out.println("#DefaultFileConnection.commit " + toString());
         try {
             processDeletions();
         } catch (IOException ex) {
@@ -86,12 +86,12 @@ public class DefaultFileConnection implements FileConnection {
     }
 
     public void rollback() throws ResourceException {
-        out.println("#FileBucket.rollback  " + toString());
+        out.println("#DefaultFileConnection.rollback  " + toString());
         this.clear();
     }
 
     public void destroy() {
-        out.println("#FileBucket.cleanup");
+        out.println("#DefaultFileConnection.cleanup");
         this.clear();
     }
 
